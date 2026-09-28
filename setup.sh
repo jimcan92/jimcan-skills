@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Automated Antigravity & Gemini Skills Setup for Jimmy's Environment (Linux/macOS)
+# Automated Antigravity & Gemini Skills Setup for Jimcan's Environment (Linux/macOS)
 # =============================================================================
 
 set -e
 
 echo ""
 echo "========================================================"
-echo "   Jimmy's Antigravity Skills & Preferences Installer   "
+echo "   Jimcan's Antigravity Skills & Preferences Installer  "
 echo "========================================================"
 echo ""
 
@@ -35,7 +35,7 @@ download_skill() {
 }
 
 # -----------------------------------------------------------------------------
-# 1. Install Jimmy's Personal Preferences & Rules
+# 1. Install Jimcan's Personal Preferences & Rules
 # -----------------------------------------------------------------------------
 echo "[1/4] Installing jimcan-dev-preferences..."
 
@@ -169,5 +169,5 @@ echo "========================================================"
 echo "   Setup Completed Successfully!                        "
 echo "========================================================"
 echo "Installed in: $GEMINI_CONFIG_DIR"
-echo "Your Antigravity agent is now configured with Jimmy's preferences."
+echo "Your Antigravity agent is now configured with Jimcan's preferences."
 echo ""

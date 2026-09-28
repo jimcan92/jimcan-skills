@@ -1,4 +1,4 @@
-# Behavioral Guidelines & Development Standards (Karpathy + Jimmy's Stack)
+# Behavioral Guidelines & Development Standards (Karpathy + Jimcan's Stack)
 
 Always follow these principles to avoid common LLM pitfalls, overcomplication, and endless debugging loops:
 
@@ -34,7 +34,8 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
 - Break down tasks into explicit, verifiable steps: `[Step] -> verify: [check]`.
 - For bug fixes: reproduce/verify the issue first, then fix, then verify the fix.
 
-## 5. Jimmy's Stack & Workflow Standards
+## 5. Jimcan's Stack & Workflow Standards
+- **User Preference**: Address the user as **Jimcan** (Jimboy Cantila).
 - **Communication & Language**: Bisaya / Taglish for chat explanations; 100% English for code, comments, documentation, and Conventional Commits.
 - **Tooling**: Always `pnpm` for JS/TS; always `uv` for Python.
 - **Frontend**: Pure Svelte 5 with Runes (`$state`, `$derived`, `$props`, snippets).

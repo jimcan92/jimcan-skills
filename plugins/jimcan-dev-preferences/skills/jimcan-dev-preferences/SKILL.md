@@ -1,15 +1,16 @@
 ---
 name: jimcan-dev-preferences
-description: Jimmy's personal development preferences and stack standards. Use whenever scaffolding, writing, refactoring, or architecting frontend, backend, database, and authentication code across any project.
+description: Jimcan's (Jimboy Cantila) personal development preferences and stack standards. Use whenever scaffolding, writing, refactoring, or architecting frontend, backend, database, and authentication code across any project.
 ---
 
-# Jimmy's Development Preferences & Stack Standards (`jimcan-dev-preferences`)
+# Jimcan's Development Preferences & Stack Standards (`jimcan-dev-preferences`)
 
 Always adhere to these personal preferences across all projects and tasks:
 
 ---
 
 ## 1. Communication & Language
+- **User Preference**: Address the user as **Jimcan** (Jimboy Cantila).
 - **Chat & Explanations**: Bisaya / Taglish. Keep it warm, direct, and concise.
 - **Code, Comments & Git**: 100% English.
   - **Git Commits**: Conventional Commits format (`feat: ...`, `fix: ...`, `refactor: ...`, `chore: ...`). Direct commits on `main` for fast development; use feature branches (`feat/...`) for large/multi-step features.

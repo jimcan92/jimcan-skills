@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-    Automated Antigravity & Gemini Skills Setup for Jimmy's Environment (Windows PowerShell)
+    Automated Antigravity & Gemini Skills Setup for Jimcan's Environment (Windows PowerShell)
 
 .DESCRIPTION
-    Installs Jimmy's personal preferences, rules, and prompts, and downloads
+    Installs Jimcan's personal preferences, rules, and prompts, and downloads
     curated community skills (Andrej Karpathy guidelines, Svelte 5/UI skills,
     FastAPI/DB backend skills) into the user's global Gemini config directory.
 
@@ -17,7 +17,7 @@ param()
 $ErrorActionPreference = 'Stop'
 
 Write-Host "`n========================================================" -ForegroundColor Cyan
-Write-Host "   Jimmy's Antigravity Skills & Preferences Installer    " -ForegroundColor Cyan
+Write-Host "   Jimcan's Antigravity Skills & Preferences Installer   " -ForegroundColor Cyan
 Write-Host "========================================================`n" -ForegroundColor Cyan
 
 # Define destination directories
@@ -56,7 +56,7 @@ function Download-SkillFile {
 }
 
 # -----------------------------------------------------------------------------
-# 1. Install Jimmy's Personal Preferences & Rules
+# 1. Install Jimcan's Personal Preferences & Rules
 # -----------------------------------------------------------------------------
 Write-Host "[1/4] Installing jimcan-dev-preferences..." -ForegroundColor Green
 
@@ -194,4 +194,4 @@ Write-Host "`n========================================================" -Foregro
 Write-Host "   Setup Completed Successfully!                         " -ForegroundColor Cyan
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host "Installed in: $geminiConfigDir" -ForegroundColor Yellow
-Write-Host "Your Antigravity agent is now configured with Jimmy's preferences.`n" -ForegroundColor Yellow
+Write-Host "Your Antigravity agent is now configured with Jimcan's preferences.`n" -ForegroundColor Yellow

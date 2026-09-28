@@ -1,6 +1,6 @@
 # jimcan-skills
 
-> **Jimmy's Antigravity Agent Preferences & Automated Skills Toolkit**
+> **Jimcan's (Jimboy Cantila) Antigravity Agent Preferences & Automated Skills Toolkit**
 
 This repository contains my personal development standards, behavioral agent rules, and an automated setup system to bootstrap any Google Antigravity / Gemini agent across any workstation in seconds.
 
@@ -66,8 +66,8 @@ jimcan-skills/
 - **Surgical Changes**: Only modify what is strictly required; clean up after yourself.
 - **Goal-Driven Execution**: Define verifiable steps `[Step] -> verify: [check]`.
 
-### 2. Jimmy's Tech Stack
-- **Communication**: Bisaya / Taglish for chat & explanations; 100% English for code, comments, documentation, and Git commits.
+### 2. Jimcan's Tech Stack
+- **Communication**: Bisaya / Taglish for chat & explanations; 100% English for code, comments, documentation, and Git commits. Address the user as **Jimcan** (Jimboy Cantila).
 - **Package Management**: Always `pnpm` for JavaScript/TypeScript; always `uv` for Python.
 - **Frontend**: Svelte 5 with Runes (`$state`, `$derived`, `$props`, snippets).
   - State files centralized in `$lib/states/*.svelte.ts`.
