@@ -49,6 +49,45 @@ Always adhere to these personal preferences across all projects and tasks:
   - Always support a Dark Mode toggle (using `mode-watcher` with shadcn-svelte or `data-theme` toggle with daisyUI).
 - **Design Philosophy**:
   - **Mobile-First Always**: Structure layouts, spacing, and grids mobile-first (small screens first, progressively enhanced for desktop with `md:` and `lg:` classes).
+- **Date Management & Formatting**:
+  - Always use **`dayjs`** for all date parsing, manipulation, and formatting.
+  - Centralize date helpers in `$lib/utils/date.ts`:
+    ```typescript
+    import dayjs from 'dayjs';
+    import relativeTime from 'dayjs/plugin/relativeTime';
+    dayjs.extend(relativeTime);
+
+    export const formatDate = (d: Date | string | number, fmt = 'MMMM D, YYYY') => dayjs(d).format(fmt);
+    export const formatTime = (d: Date | string | number) => dayjs(d).format('h:mm A');
+    export const formatDateTime = (d: Date | string | number) => dayjs(d).format('MMM D, YYYY h:mm A');
+    export const formatTimeAgo = (d: Date | string | number) => dayjs(d).fromNow();
+    ```
+- **Form Layouts (Dialog vs. Subpage)**:
+  - **Few fields** (quick edits, create tag, login, short inputs): Use a **Dialog / Modal**.
+  - **Many fields / Complex forms** (student enrollment, multi-section profiles): Use a **Dedicated Subpage route** (e.g. `/students/new`). Never cram long forms into cramped modals.
+- **Custom Confirmation Dialogs (Strict Policy)**:
+  - **NEVER use native browser alerts (`window.confirm()`, `window.alert()`)**.
+  - Always use a styled **Confirmation Dialog** with a warning icon, clear descriptive message, Cancel button, and styled Destructive action button (e.g. red/danger).
+- **Navigation & Hierarchy (Breadcrumbs)**:
+  - On nested routes or subpages (e.g. `Dashboard > Students > Juan Dela Cruz > Edit`), always render a **Breadcrumbs** trail so users never get lost and have 1-click ancestor navigation.
+- **Loading States (Skeleton Loaders)**:
+  - Never display a blank screen or a lone spinner for page/data loads.
+  - Always render **Skeleton Loaders** (daisyUI skeleton or shadcn skeleton) matching the layout of tables, cards, and detail panels.
+- **Empty States (Zero Data Experience)**:
+  - When tables or lists have zero records or no search results, render a friendly **Empty State**: an icon (e.g. `lucide-svelte` `SearchX` or `Inbox`), clear explanatory title/text, and an actionable CTA button (*"Add New Student"* or *"Clear Filters"*).
+- **Mobile-Responsive Data Tables (Card View)**:
+  - On desktop (`md:` and up): Render a clean `<table>`.
+  - On mobile screens: Transform the table into **Stacked Cards** (`block md:hidden`) so mobile users scroll vertically without clunky horizontal overflow.
+- **Debounced Search Inputs (300ms)**:
+  - Add a **300ms debounce** to search inputs using Svelte 5 `$state` timers to prevent hammering the server/database on every single keystroke.
+- **Button Loading & Double-Click Protection**:
+  - On form submissions or async actions, automatically disable the submit button and display a loading indicator (*"Saving..."* / spinner) to prevent duplicate submissions.
+- **Numbered Pagination**:
+  - For data-heavy tables, prefer **Numbered Pagination** (Page X of Y) with an items-per-page selector (10, 25, 50) and total record counts over infinite scrolling.
+- **Actionable Toast Feedback**:
+  - Always display instant visual feedback on actions using **Toasts** (`svelte-sonner` for shadcn, daisyUI toast for daisyUI): green for success, red for errors.
+- **Unsaved Changes Guard (Dirty Forms)**:
+  - On extensive forms, track dirty state with `$state` and prompt a confirmation dialog using SvelteKit's `beforeNavigate` if the user attempts to leave with unsaved input.
 - **Routing & Navigation Conventions**:
   - **Dashboard Route**: When building an app with a dashboard, map the main dashboard to the root `'/'` route, **NOT** `'/dashboard'`.
   - **Layout Clarification**: Always ask the user beforehand: Do they need a collapsible Sidebar (especially for admin dashboards), or just a Top AppBar with a Drawer?

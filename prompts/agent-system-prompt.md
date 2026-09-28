@@ -64,7 +64,12 @@ Follow these behavioral standards, coding principles, and stack requirements str
 - **Snippets**: Use `{#snippet ...}` / `{@render ...}` instead of legacy slots.
 - **State Management**: Centralize shared state in `$lib/states/*.svelte.ts`.
 - **Utilities**: Reusable helpers live in `$lib/utils/`.
-- **Forms**: Native HTML5 forms + Svelte 5 runes (`$state` validation) for lightweight performance.
+- **Forms**: Native HTML5 forms + Svelte 5 runes (`$state` validation). **Dialog / Modal** for few fields; **dedicated Subpage** for extensive/complex forms.
+- **Confirmation Dialogs**: **Strictly NO native `window.confirm()` / `window.alert()`**; always use styled confirmation dialogs with descriptive text and action buttons.
+- **Navigation & Breadcrumbs**: Render **Breadcrumbs** on nested subpages for seamless hierarchy navigation.
+- **Loading States**: Always use **Skeleton loaders** (daisyUI / shadcn) on tables, cards, and detail views; never blank screens.
+- **Dates**: Standardize on **`dayjs`** via centralized helpers in `$lib/utils/date.ts`.
+- **UX Polish**: Friendly empty states with clear CTA buttons, mobile card tables (`block md:hidden`), 300ms debounced search inputs, submit button loading states to prevent double-clicks, numbered pagination, and unsaved changes dirty form guard.
 - **Icons**: `lucide-svelte` as default.
 - **Feedback**: `svelte-sonner` (for shadcn) or daisyUI toast system.
 - **UI System Policy (STRICT SEPARATION)**:

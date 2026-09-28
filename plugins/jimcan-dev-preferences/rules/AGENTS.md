@@ -50,7 +50,12 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
 - **Frontend**: Pure Svelte 5 with Runes (`$state`, `$derived`, `$props`, snippets).
   - State files centralized in `$lib/states/*.svelte.ts`.
   - Shared functions/helpers in `$lib/utils/`.
-  - Forms: Native HTML5 forms + Svelte 5 runes (`$state` validation) for lightweight performance.
+  - Forms: Native HTML5 forms + Svelte 5 runes (`$state` validation). **Dialog / Modal** for few fields; **dedicated Subpage** for extensive/complex forms.
+  - Confirmations: **Strictly NO native `window.confirm()` / `window.alert()`**; always use styled confirmation dialogs.
+  - Navigation: **Breadcrumbs** mandatory on nested subpages.
+  - Loading: **Skeleton loaders** (daisyUI / shadcn) for tables, cards, and details; never blank screens.
+  - Dates: Standardize on **`dayjs`** via helpers in `$lib/utils/date.ts`.
+  - UX Polish: Friendly empty states with CTA, mobile card tables (`block md:hidden`), 300ms debounced search, submit button loading states to prevent double-clicks, numbered pagination, and unsaved changes guard on extensive forms.
   - Icons: `lucide-svelte` as default.
   - Toasts: `svelte-sonner` (for shadcn) or daisyUI toast system.
   - Dark Mode: Support theme toggle (`mode-watcher` or daisyUI `data-theme`).

@@ -122,7 +122,12 @@ jimcan-skills/
 - **Frontend**: Svelte 5 with Runes (`$state`, `$derived`, `$props`, snippets).
   - State files centralized in `$lib/states/*.svelte.ts`.
   - Shared functions/helpers in `$lib/utils/`.
-  - Forms: Native HTML5 forms + Svelte 5 runes (`$state` validation).
+  - Forms: Native HTML5 forms + Svelte 5 runes (`$state` validation). Modal/Dialog for short forms; dedicated subpage for complex forms.
+  - Confirmations: Styled confirmation dialogs only (strictly no native `confirm()`/`alert()`).
+  - Navigation & Hierarchy: Breadcrumbs on nested routes.
+  - Loading & Empty States: Skeleton loaders matching component layout; descriptive empty states with CTA.
+  - Dates: Standardize on `dayjs` (`$lib/utils/date.ts`).
+  - UX Polish: Responsive mobile card tables (`block md:hidden`), 300ms debounced search, submit button loading states, numbered pagination, and unsaved changes dirty form guard.
   - Icons: `lucide-svelte`.
   - Dark Mode: Supported via theme toggle (`mode-watcher` or `data-theme`).
   - Strict UI Separation: **Never mix `shadcn-svelte` and `daisyUI` in the same project**—choose one.
