@@ -1,0 +1,17 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment & temporary files
+*.tmp
+*.log
+.env
+.env.local
+
+# Node & Python caches (if any testing is run locally)
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/

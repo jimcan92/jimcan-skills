@@ -1,0 +1,52 @@
+# Behavioral Guidelines & Development Standards (Karpathy + Jimmy's Stack)
+
+Always follow these principles to avoid common LLM pitfalls, overcomplication, and endless debugging loops:
+
+## MANDATORY: Plan & Clarify First (Never Jump Straight to Code)
+- When the user asks to create, implement, refactor, or fix anything non-trivial:
+  - **DO NOT start editing files or writing code immediately on the first turn.**
+  - **Surface tradeoffs & ask questions first**: Present key ambiguities, design choices, or architectural decisions with your recommendations (using `ask_question` or structured question blocks).
+    - For dashboard/admin apps: Always clarify if the user wants a **Sidebar** or just a **Top AppBar / Drawer**.
+  - **Present a step-by-step plan**: Break down the implementation into verifiable steps: `[Step] -> verify: [check]`.
+  - **Wait for confirmation**: Wait for the user to answer questions or confirm the plan before modifying or creating code files.
+
+## 1. Think Before Coding
+- **Don't assume. Don't hide confusion. Surface tradeoffs.**
+- State assumptions explicitly before implementing. If uncertain or if multiple interpretations exist, ask rather than guessing silently.
+- If a simpler approach exists, say so and push back when warranted.
+- If something is unclear, stop, name what is confusing, and ask.
+
+## 2. Simplicity First
+- **Minimum code that solves the problem. Nothing speculative.**
+- No unrequested features, premature generalizations, or bloated abstractions for single-use code.
+- No "flexibility" or "configurability" that wasn't asked for.
+- No speculative error handling for impossible scenarios.
+- Prefer 50 lines over 200 lines whenever possible.
+
+## 3. Surgical Changes
+- **Touch only what you must. Clean up only your own mess.**
+- Do not "improve" or reformat adjacent code or comments unrelated to the task.
+- Do not refactor code that is working fine. Match the existing project style.
+- Only remove imports/variables/functions that your specific changes made obsolete.
+
+## 4. Goal-Driven Execution
+- **Define success criteria. Loop until verified.**
+- Break down tasks into explicit, verifiable steps: `[Step] -> verify: [check]`.
+- For bug fixes: reproduce/verify the issue first, then fix, then verify the fix.
+
+## 5. Jimmy's Stack & Workflow Standards
+- **Communication & Language**: Bisaya / Taglish for chat explanations; 100% English for code, comments, documentation, and Conventional Commits.
+- **Tooling**: Always `pnpm` for JS/TS; always `uv` for Python.
+- **Frontend**: Pure Svelte 5 with Runes (`$state`, `$derived`, `$props`, snippets).
+  - State files centralized in `$lib/states/*.svelte.ts`.
+  - Shared functions/helpers in `$lib/utils/`.
+  - Forms: Native HTML5 forms + Svelte 5 runes (`$state` validation) for lightweight performance.
+  - Icons: `lucide-svelte` as default.
+  - Toasts: `svelte-sonner` (for shadcn) or daisyUI toast system.
+  - Dark Mode: Support theme toggle (`mode-watcher` or daisyUI `data-theme`).
+  - Strict UI isolation: **never mix shadcn-svelte and daisyUI in one project**—use either one.
+  - Dashboard route: Main dashboard lives at `'/'`, **NOT** `'/dashboard'`.
+  - Layout & Design: **Always Mobile-First** design; ask if need Sidebar vs Top AppBar/Drawer.
+- **Backend & DB**: FastAPI (layered routers/schemas/services) + MySQL (via Drizzle ORM) by default; Better Auth for authentication. Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).
+- **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
+- **Verification**: Always run `pnpm check` (or build) / python typecheck before declaring any task complete.

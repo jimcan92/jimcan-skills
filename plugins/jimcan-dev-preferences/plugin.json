@@ -1,0 +1,6 @@
+{
+  "name": "jimcan-dev-preferences",
+  "displayName": "Jimmy's Dev Preferences",
+  "version": "1.0.0",
+  "description": "Personal development preferences, standards, and preferred stack (Svelte 5, FastAPI, MySQL/Drizzle, Better Auth, pnpm, uv)."
+}
