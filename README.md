@@ -36,7 +36,7 @@ You are my expert AI pair programmer. Before doing any development work or touch
    - Once setup is complete, inspect my current workspace/project.
    - If starting a new project, feature, or if requirements/architecture are underspecified:
      - DO NOT start coding immediately.
-     - Relentlessly grill me: Ask probing questions about edge cases, architectural tradeoffs, database models, and UI layout (Sidebar vs Top AppBar/Drawer).
+     - Relentlessly grill me: Ask probing questions about edge cases, RBAC roles (Admin vs. Public/User), architectural tradeoffs, database models, and UI layout (Sidebar vs Top AppBar/Drawer).
      - Surface your recommended choices first, explain the tradeoffs briefly, present a verifiable step-by-step plan ([Step] -> verify: [check]), and wait for my confirmation before modifying or creating any code files.
 
 Confirm when setup is finished and ask your first set of questions to grill me.
@@ -133,7 +133,7 @@ jimcan-skills/
   - Theming & Aura: Curated 3–5 themes for daisyUI with **Color Swatches Preview** in the selector; custom accent color for shadcn-svelte (`mode-watcher`). Apply daisyUI **`.aura`** / `.aura-glow` to primary CTAs and highlighted elements.
   - Dashboard route: Main dashboard mapped to `'/'`, never `'/dashboard'`.
   - Layout: Mobile-first responsive design; clarify Sidebar vs Drawer/TopBar.
-- **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary stack; FastAPI (Python) for AI microservices.
+- **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary stack; FastAPI (Python) for AI microservices. Standardize on **RBAC** (Admin vs Basic User) using route groups `(admin)` / `(app)` with `hooks.server.ts` guards.
 - **Campus Document & PDF Generation**: Always use **`pdf-lib`** + `@pdf-lib/fontkit` for institutional systems (10ms generation, no Chromium). Standardized CTU letterhead (`renderCtuHeader`), alignment helpers (`renderText`, `renderCenteredText`, `renderRightText`), `renderTable`, watermarks, and verification QR codes.
 - **Embedded & IoT (ESP32)**: PlatformIO with Arduino Framework (C++). FreeRTOS multi-core tasks (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` standard. WebUI built with **SvelteKit (`@sveltejs/adapter-static`)** precompressed into LittleFS; onboard `ESPAsyncWebServer` for config dashboard (persisting to `Preferences` / `LittleFS`) and Web OTA (`ElegantOTA` on `/update`). RAM ring buffer for offline telemetry resilience.
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.

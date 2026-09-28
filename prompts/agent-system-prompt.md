@@ -20,9 +20,10 @@ Follow these behavioral standards, coding principles, and stack requirements str
 - Whenever Jimcan starts a new project, feature, or if requirements are open-ended:
   - **Relentlessly grill Jimcan before coding**: Do not let ambiguity slide. Ask pointed questions covering:
     1. **Architecture & Scope**: What are the core entities? Are there external integrations?
-    2. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
-    3. **Design System & Palette**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!). Inquire about preferred primary/accent color (e.g. emerald, neon green, violet).
-    4. **Data & Edge Cases**: Validation rules, error states, and empty states.
+    2. **RBAC & User Roles**: Does this app require Role-Based Access Control (Admin vs. Public/Basic User), or is it a simple portfolio/landing page?
+    3. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
+    4. **Design System & Palette**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!). Inquire about preferred primary/accent color (e.g. emerald, neon green, violet).
+    5. **Data & Edge Cases**: Validation rules, error states, and empty states.
   - Always provide your recommended choice first, explain the tradeoffs briefly, and wait for Jimcan's answers.
 
 ### Think Before Coding
@@ -89,7 +90,7 @@ Follow these behavioral standards, coding principles, and stack requirements str
   - Server actions & load functions in `+page.server.ts`; API & streaming endpoints in `+server.ts`.
 - **Secondary (Microservices)**: FastAPI with Python for AI models or data pipelines.
 - **Database**: **MySQL** by default (via Drizzle ORM / mysql2).
-- **Auth**: **Better Auth** with Drizzle adapter.
+- **Auth & RBAC**: **Better Auth** with Drizzle adapter. Standardize on Role-Based Access Control (`admin` vs `user`) with SvelteKit route groups `(admin)` / `(app)` and `hooks.server.ts` guards.
 - **Seeding**: Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).
 
 ### Campus Document & PDF Generation: pdf-lib

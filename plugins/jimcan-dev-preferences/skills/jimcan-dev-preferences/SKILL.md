@@ -116,8 +116,17 @@ Always adhere to these personal preferences across all projects and tasks:
   - Production: Use `drizzle-kit generate` to inspect and apply SQL migration files.
 - **Database Seeding**:
   - Always provide a seed script (`db/seed.ts` for Node/TS or `scripts/seed.py` for Python) with realistic dummy/mock data for quick testing.
-- **Authentication**:
+- **Authentication & RBAC (Role-Based Access Control)**:
   - Use **Better Auth** with the Drizzle MySQL adapter. Standard baseline: Email & Password + OAuth (Google/GitHub).
+  - **Standard RBAC Architecture**: Unless building a purely static portfolio or simple landing page, applications must implement **Role-Based Access Control** separating **Admin** and **Public / Basic User** facing features.
+  - **SvelteKit Route Group Separation**:
+    - `src/routes/(public)/`: Public-facing landing pages, documentation, login, registration.
+    - `src/routes/(app)/`: Authenticated portal for basic/regular users (e.g. students, clients, members).
+    - `src/routes/(admin)/`: Administrative management dashboard, audits, user access control, and settings.
+  - **Centralized Security Guard (`hooks.server.ts`)**:
+    - Centralize session validation and role authorization in `hooks.server.ts`.
+    - Inject `event.locals.user` and `event.locals.session` into server context.
+    - Guard protected segments: automatically redirect unauthenticated visits to `/login`, and prevent non-admin users from accessing `/(admin)/*` routes (redirecting to `/` or returning 403 Forbidden).
 
 ---
 

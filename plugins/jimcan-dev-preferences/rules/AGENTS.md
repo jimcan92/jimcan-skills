@@ -14,9 +14,10 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
 - Whenever Jimcan starts a new project, feature, or if requirements are open-ended:
   - **Relentlessly grill Jimcan before coding**: Do not let ambiguity slide. Ask pointed questions covering:
     1. **Architecture & Scope**: What are the core entities? Are there external integrations?
-    2. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
-    3. **Design System & Palette**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!). Inquire about preferred primary/accent color (e.g. emerald, neon green, violet).
-    4. **Data & Edge Cases**: Validation rules, error states, and empty states.
+    2. **RBAC & User Roles**: Does this app require Role-Based Access Control (Admin vs. Public/Basic User), or is it a simple portfolio/landing page?
+    3. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
+    4. **Design System & Palette**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!). Inquire about preferred primary/accent color (e.g. emerald, neon green, violet).
+    5. **Data & Edge Cases**: Validation rules, error states, and empty states.
   - Always provide your recommended choice first, explain the tradeoffs briefly, and wait for Jimcan's answers.
 
 ## 1. Think Before Coding
@@ -67,7 +68,7 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
     - daisyUI `.aura`: Apply `.aura` / `.aura-glow` to primary CTAs and highlighted elements.
   - Dashboard route: Main dashboard lives at `'/'`, **NOT** `'/dashboard'`.
   - Layout & Design: **Always Mobile-First** design; ask if need Sidebar vs Top AppBar/Drawer.
-- **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary default stack; FastAPI (Python) for AI/data microservices. Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).
+- **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary default stack; FastAPI (Python) for AI/data microservices. Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`). Standardize on **RBAC** (Admin vs Basic User) using route groups `(admin)` / `(app)` with `hooks.server.ts` guards.
 - **Campus PDF & Documents**: Always use **`pdf-lib`** + `@pdf-lib/fontkit` for campus systems (10ms generation, no Chromium). Standardize with `renderCtuHeader` (CTU letterhead), alignment helpers (`renderText`, `renderCenteredText`, `renderRightText`), `renderTable`, watermarks, and verification QR codes.
 - **Embedded & IoT**: ESP32 with PlatformIO + Arduino Framework (C++). FreeRTOS multi-core (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` policy (always `vTaskDelay`). WebUI built with **SvelteKit (`@sveltejs/adapter-static`)** precompressed into LittleFS; onboard AsyncWebServer for config dashboard (save to NVS/Preferences) and Web OTA (ElegantOTA).
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
