@@ -37,16 +37,26 @@ Always adhere to these personal preferences across all projects and tasks:
   - Prefer **Native HTML5 forms + Svelte 5 Runes** (`$state` validation) for a lightweight, dependency-free approach. Avoid bloated form libraries unless explicitly requested.
 - **Data Fetching & Actions**:
   - Use SvelteKit native `load` functions (`+page.server.ts`) for server-side loading and Form Actions (`actions` in `+page.server.ts`) for mutations.
-- **UI Design System Policy (Strict Separation)**:
-  - **Never mix shadcn-svelte and daisyUI in the same project!**
-  - Use **EITHER** `shadcn-svelte` **OR** `daisyUI` based on the project's chosen design system.
-  - Clarify with the user which UI system to use if starting from scratch.
+- **UI Design System Policy (Strict Separation & Component Priority)**:
+  - **Never mix shadcn-svelte and daisyUI in the same project!** Use **EITHER** `shadcn-svelte` **OR** `daisyUI` based on the project's chosen design system.
+  - **Strict Native Component Priority (Catalog-First Policy)**:
+    - Before creating any UI element, **always check the design system catalog first**.
+    - Exhaustively use the framework's native components and utility classes (`btn`, `card`, `badge`, `alert`, `modal`, `drawer`, `menu`, `table`, `input`, `select`, `collapse`, `kbd`, `stat`, `steps`, `tabs`, `timeline`, `tooltip`, `skeleton`, etc.).
+    - **Strictly NO custom elements or hand-rolled CSS/divs** when an equivalent component exists in the design system. Custom elements are only permitted if the library explicitly lacks the component or Jimcan explicitly requests a custom implementation.
+- **Theming, Color Schemes & Previews**:
+  - **shadcn-svelte Theming**:
+    - Support **Light**, **Dark**, and **System** mode via `mode-watcher`.
+    - Inquire about Jimcan's preferred color scheme / accent color (e.g. Neon Green, Emerald, Violet, Zinc) during initial setup and configure CSS variables/Tailwind colors accordingly.
+  - **daisyUI Curated Themes & Swatches Preview**:
+    - **Never enable all 32+ daisyUI themes** in production to prevent UI clutter and overwhelming dropdowns.
+    - Curate a focused palette of **3 to 5 complementary themes** aligned with Jimcan's preferred color/vibe (e.g. for Green/Nature: `light`, `dark`, `forest`, `emerald`; for Cyber/Neon: `dark`, `synthwave`, `cyberpunk`, `night`).
+    - **Visual Theme Selector**: The theme picker/dropdown MUST display **Color Palette Swatches** (primary, secondary, accent, neutral preview dots/boxes) next to each theme name so users have an immediate visual preview before switching.
+- **daisyUI `.aura` Glow for CTAs & Highlights**:
+  - Use daisyUI 5's **`.aura`** wrapper component (`aura`, `aura-glow`, `aura-rainbow`, `aura-gold`, etc.) to highlight primary **Call-To-Action (CTA) buttons**, hero actions, or featured cards for a modern, animated glowing border/accent.
 - **Icons**:
   - Use **`lucide-svelte`** as the default icons library.
 - **Toasts & Feedback**:
   - Use **`svelte-sonner`** for `shadcn-svelte` projects; use the semantic daisyUI toast system for `daisyUI` projects.
-- **Theming & Dark Mode**:
-  - Always support a Dark Mode toggle (using `mode-watcher` with shadcn-svelte or `data-theme` toggle with daisyUI).
 - **Design Philosophy**:
   - **Mobile-First Always**: Structure layouts, spacing, and grids mobile-first (small screens first, progressively enhanced for desktop with `md:` and `lg:` classes).
 - **Date Management & Formatting**:

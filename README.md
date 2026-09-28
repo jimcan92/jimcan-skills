@@ -129,8 +129,8 @@ jimcan-skills/
   - Dates: Standardize on `dayjs` (`$lib/utils/date.ts`).
   - UX Polish: Responsive mobile card tables (`block md:hidden`), 300ms debounced search, submit button loading states, numbered pagination, and unsaved changes dirty form guard.
   - Icons: `lucide-svelte`.
-  - Dark Mode: Supported via theme toggle (`mode-watcher` or `data-theme`).
-  - Strict UI Separation: **Never mix `shadcn-svelte` and `daisyUI` in the same project**—choose one.
+  - Strict UI Separation & Component Priority: **Never mix `shadcn-svelte` and `daisyUI`** in one project. Always check catalog first; exhaustively use built-in components instead of hand-crafted elements.
+  - Theming & Aura: Curated 3–5 themes for daisyUI with **Color Swatches Preview** in the selector; custom accent color for shadcn-svelte (`mode-watcher`). Apply daisyUI **`.aura`** / `.aura-glow` to primary CTAs and highlighted elements.
   - Dashboard route: Main dashboard mapped to `'/'`, never `'/dashboard'`.
   - Layout: Mobile-first responsive design; clarify Sidebar vs Drawer/TopBar.
 - **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary stack; FastAPI (Python) for AI microservices.

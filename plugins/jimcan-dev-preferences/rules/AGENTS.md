@@ -15,7 +15,7 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
   - **Relentlessly grill Jimcan before coding**: Do not let ambiguity slide. Ask pointed questions covering:
     1. **Architecture & Scope**: What are the core entities? Are there external integrations?
     2. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
-    3. **Design System**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!).
+    3. **Design System & Palette**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!). Inquire about preferred primary/accent color (e.g. emerald, neon green, violet).
     4. **Data & Edge Cases**: Validation rules, error states, and empty states.
   - Always provide your recommended choice first, explain the tradeoffs briefly, and wait for Jimcan's answers.
 
@@ -58,8 +58,13 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
   - UX Polish: Friendly empty states with CTA, mobile card tables (`block md:hidden`), 300ms debounced search, submit button loading states to prevent double-clicks, numbered pagination, and unsaved changes guard on extensive forms.
   - Icons: `lucide-svelte` as default.
   - Toasts: `svelte-sonner` (for shadcn) or daisyUI toast system.
-  - Dark Mode: Support theme toggle (`mode-watcher` or daisyUI `data-theme`).
-  - Strict UI isolation: **never mix shadcn-svelte and daisyUI in one project**—use either one.
+  - Strict UI Isolation & Component Priority:
+    - **Never mix shadcn-svelte and daisyUI in one project**—use either one.
+    - **Native Component Priority (Catalog-First)**: Always check the framework catalog first; exhaustively use built-in components (`btn`, `card`, `alert`, `modal`, `tabs`, etc.). Strictly NO hand-rolled custom elements/divs if an equivalent component exists unless requested.
+  - Theming & Previews:
+    - shadcn-svelte: Light, Dark, System (`mode-watcher`) with configured accent color.
+    - daisyUI: Curated 3 to 5 themes matching the palette (never dump all 32); Theme Selector MUST show **Color Swatches Preview** (primary, secondary, accent, neutral).
+    - daisyUI `.aura`: Apply `.aura` / `.aura-glow` to primary CTAs and highlighted elements.
   - Dashboard route: Main dashboard lives at `'/'`, **NOT** `'/dashboard'`.
   - Layout & Design: **Always Mobile-First** design; ask if need Sidebar vs Top AppBar/Drawer.
 - **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary default stack; FastAPI (Python) for AI/data microservices. Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).

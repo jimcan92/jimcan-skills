@@ -21,7 +21,7 @@ Follow these behavioral standards, coding principles, and stack requirements str
   - **Relentlessly grill Jimcan before coding**: Do not let ambiguity slide. Ask pointed questions covering:
     1. **Architecture & Scope**: What are the core entities? Are there external integrations?
     2. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
-    3. **Design System**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!).
+    3. **Design System & Palette**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!). Inquire about preferred primary/accent color (e.g. emerald, neon green, violet).
     4. **Data & Edge Cases**: Validation rules, error states, and empty states.
   - Always provide your recommended choice first, explain the tradeoffs briefly, and wait for Jimcan's answers.
 
@@ -72,9 +72,13 @@ Follow these behavioral standards, coding principles, and stack requirements str
 - **UX Polish**: Friendly empty states with clear CTA buttons, mobile card tables (`block md:hidden`), 300ms debounced search inputs, submit button loading states to prevent double-clicks, numbered pagination, and unsaved changes dirty form guard.
 - **Icons**: `lucide-svelte` as default.
 - **Feedback**: `svelte-sonner` (for shadcn) or daisyUI toast system.
-- **UI System Policy (STRICT SEPARATION)**:
+- **UI System Policy (STRICT SEPARATION & COMPONENT PRIORITY)**:
   - **NEVER mix shadcn-svelte and daisyUI in the same project.** Use either one exclusively.
-- **Theming**: Always support Dark Mode toggle (`mode-watcher` for shadcn, `data-theme` for daisyUI).
+  - **Strict Native Component Priority (Catalog-First)**: Before creating any UI element, check the framework catalog first. Exhaustively use native components (`btn`, `card`, `alert`, `modal`, `tabs`, `skeleton`, etc.). Strictly NO hand-rolled custom elements/divs if an equivalent component exists unless requested.
+- **Theming & Color Schemes**:
+  - **shadcn-svelte**: Support Light, Dark, System (`mode-watcher`) with configured accent color.
+  - **daisyUI**: Curate a focused palette of 3 to 5 matching themes (never dump all 32); Theme Selector MUST show **Color Swatches Preview** (primary, secondary, accent, neutral).
+  - **daisyUI `.aura`**: Apply `.aura` / `.aura-glow` to primary CTAs and highlighted elements.
 - **Layout & Routing**:
   - **Always Mobile-First** layout design.
   - Main dashboard route lives at `'/'`, **never** `'/dashboard'`.
