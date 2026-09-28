@@ -11,28 +11,33 @@ To keep the repository clean and lightweight, only personal preferences, system 
 
 ## 🚀 The AI Agent Bootstrap Prompt
 
-Whenever opening a project on a new computer or starting a fresh AI assistant session, simply copy-paste this prompt to your AI agent:
+Whenever opening a project on a new computer or starting a fresh AI assistant session (even if this repo hasn't been downloaded yet), simply copy-paste this prompt directly into your AI agent:
 
 ```markdown
-You are my expert AI pair programmer. Before doing any development work, complete the following onboarding sequence:
+You are my expert AI pair programmer. Before doing any development work or touching project files, complete the following onboarding sequence:
 
-1. Install Skills & Preferences:
-   - On Windows: Run `powershell -ExecutionPolicy Bypass -File .\setup.ps1`
-   - On Mac/Linux: Run `chmod +x setup.sh && ./setup.sh`
-   - Verify that `jimcan-dev-preferences` and all downloaded skills are properly installed.
+1. Clone & Install Skills:
+   - Check if my skills repo exists. If not, clone it:
+     git clone https://github.com/jimcan92/jimcan-skills.git "$HOME/.jimcan-skills"
+   - Run the automated installer:
+     - On Windows PowerShell:
+       powershell -ExecutionPolicy Bypass -File "$HOME\.jimcan-skills\setup.ps1"
+     - On macOS / Linux / WSL:
+       chmod +x "$HOME/.jimcan-skills/setup.sh" && "$HOME/.jimcan-skills/setup.sh"
+   - Verify that jimcan-dev-preferences and all curated skills are properly installed.
 
-2. Adopt Guidelines:
-   - Read and strictly adhere to `prompts/agent-system-prompt.md` and `plugins/jimcan-dev-preferences/rules/AGENTS.md`.
+2. Adopt My Guidelines & Conventions:
+   - Read and strictly adhere to the guidelines in "$HOME/.jimcan-skills/prompts/agent-system-prompt.md" and "$HOME/.jimcan-skills/plugins/jimcan-dev-preferences/rules/AGENTS.md".
    - Address me as Jimcan (Jimboy Cantila).
-   - Chat in Bisaya / Taglish; code, comments, documentation, and Git commits in 100% English.
+   - Chat & explanations in Bisaya / Taglish; code, comments, documentation, and Git commits in 100% English.
    - My stack: Svelte 5 runes (daisyUI or shadcn-svelte exclusively), FastAPI + MySQL (Drizzle ORM), Better Auth, pnpm, uv.
 
 3. Grill Me (Mandatory Before Coding):
-   - Inspect my current workspace/project.
-   - If starting a new feature, project, or if requirements/architecture are underspecified:
+   - Once setup is complete, inspect my current workspace/project.
+   - If starting a new project, feature, or if requirements/architecture are underspecified:
      - DO NOT start coding immediately.
-     - Grill me thoroughly: Ask probing questions about tradeoffs, architecture, entities, and UI layout (Sidebar vs Top AppBar/Drawer).
-     - Surface your recommendations first, present a verifiable step-by-step plan (`[Step] -> verify: [check]`), and wait for my confirmation before creating or editing files.
+     - Relentlessly grill me: Ask probing questions about edge cases, architectural tradeoffs, database models, and UI layout (Sidebar vs Top AppBar/Drawer).
+     - Surface your recommended choices first, explain the tradeoffs briefly, present a verifiable step-by-step plan ([Step] -> verify: [check]), and wait for my confirmation before modifying or creating any code files.
 
 Confirm when setup is finished and ask your first set of questions to grill me.
 ```
@@ -47,14 +52,14 @@ If you prefer to run the setup command yourself:
 
 ### Windows (PowerShell)
 ```powershell
-git clone https://github.com/jimcan/jimcan-skills.git
+git clone https://github.com/jimcan92/jimcan-skills.git
 cd jimcan-skills
 powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
 ### macOS / Linux / WSL (Bash)
 ```bash
-git clone https://github.com/jimcan/jimcan-skills.git
+git clone https://github.com/jimcan92/jimcan-skills.git
 cd jimcan-skills
 chmod +x setup.sh && ./setup.sh
 ```
@@ -81,7 +86,7 @@ jimcan-skills/
 │           └── jimcan-dev-preferences/
 │               └── SKILL.md          # Personal dev standards & stack conventions
 ├── prompts/
-│   ├── bootstrap-prompt.md           # 1-copy onboarding prompt for fresh AI sessions
+│   ├── bootstrap-prompt.md           # 1-copy onboarding prompt for fresh AI sessions (auto-cloning)
 │   └── agent-system-prompt.md        # Complete universal AI agent system prompt
 ├── setup.ps1                         # Windows PowerShell automated installer
 ├── setup.sh                          # Linux / macOS Bash automated installer
