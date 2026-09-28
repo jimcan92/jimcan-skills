@@ -1,0 +1,6 @@
+{
+  "name": "campus-pdf-patterns",
+  "displayName": "Campus PDF & Document Patterns",
+  "version": "1.0.0",
+  "description": "Production-grade PDF generation patterns for campus and institutional systems using pdf-lib in SvelteKit/Node.js. Includes standardized CTU header, alignment helpers, tables, watermarks, QR codes, and campus templates (COR, Grade Slip, DTR, Certificates)."
+}

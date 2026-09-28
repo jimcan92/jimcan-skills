@@ -30,7 +30,7 @@ You are my expert AI pair programmer. Before doing any development work or touch
    - Read and strictly adhere to the guidelines in "$HOME/.jimcan-skills/prompts/agent-system-prompt.md" and "$HOME/.jimcan-skills/plugins/jimcan-dev-preferences/rules/AGENTS.md".
    - Address me as Jimcan (Jimboy Cantila).
    - Chat & explanations in Bisaya / Taglish; code, comments, documentation, and Git commits in 100% English.
-   - My stack: Svelte 5 runes (daisyUI or shadcn-svelte exclusively), FastAPI + MySQL (Drizzle ORM), Better Auth, pnpm, uv.
+   - My stack: SvelteKit Fullstack (Svelte 5 runes, daisyUI or shadcn-svelte exclusively, Drizzle ORM + MySQL, Better Auth), pdf-lib campus PDF engine, ESP32 PlatformIO embedded, pnpm, uv.
 
 3. Grill Me (Mandatory Before Coding):
    - Once setup is complete, inspect my current workspace/project.
@@ -85,11 +85,16 @@ jimcan-skills/
 │   │   └── skills/
 │   │       └── jimcan-dev-preferences/
 │   │           └── SKILL.md          # Personal dev standards & stack conventions
-│   └── embedded-esp32-skills/
-│       ├── plugin.json               # ESP32 plugin manifest
+│   ├── embedded-esp32-skills/
+│   │   ├── plugin.json               # ESP32 plugin manifest
+│   │   └── skills/
+│   │       └── esp32-embedded-patterns/
+│   │           └── SKILL.md          # Production FreeRTOS, PlatformIO, WebServer & OTA patterns
+│   └── campus-pdf-patterns/
+│       ├── plugin.json               # Campus PDF plugin manifest
 │       └── skills/
-│           └── esp32-embedded-patterns/
-│               └── SKILL.md          # Production FreeRTOS, PlatformIO, WebServer & OTA patterns
+│           └── campus-pdf-patterns/
+│               └── SKILL.md          # CTU Letterhead, alignment helpers, tables, watermarks, QR codes
 ├── prompts/
 │   ├── bootstrap-prompt.md           # 1-copy onboarding prompt for fresh AI sessions (auto-cloning)
 │   └── agent-system-prompt.md        # Complete universal AI agent system prompt
@@ -123,8 +128,8 @@ jimcan-skills/
   - Strict UI Separation: **Never mix `shadcn-svelte` and `daisyUI` in the same project**—choose one.
   - Dashboard route: Main dashboard mapped to `'/'`, never `'/dashboard'`.
   - Layout: Mobile-first responsive design; clarify Sidebar vs Drawer/TopBar.
-- **Backend & Database**: FastAPI (modular routers/schemas/services) with MySQL (via Drizzle ORM).
-- **Authentication**: Better Auth with Drizzle adapter.
+- **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary stack; FastAPI (Python) for AI microservices.
+- **Campus Document & PDF Generation**: Always use **`pdf-lib`** + `@pdf-lib/fontkit` for institutional systems (10ms generation, no Chromium). Standardized CTU letterhead (`renderCtuHeader`), alignment helpers (`renderText`, `renderCenteredText`, `renderRightText`), `renderTable`, watermarks, and verification QR codes.
 - **Embedded & IoT (ESP32)**: PlatformIO with Arduino Framework (C++). FreeRTOS multi-core tasks (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` standard. Onboard `ESPAsyncWebServer` for config dashboard (persisting to `Preferences` / `LittleFS`) and Web OTA (`ElegantOTA` on `/update`). RAM ring buffer for offline telemetry resilience.
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
 - **Verification**: Run `pnpm check` (or build) / Python typecheck before declaring tasks complete.

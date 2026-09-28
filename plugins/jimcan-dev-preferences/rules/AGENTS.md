@@ -57,7 +57,8 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
   - Strict UI isolation: **never mix shadcn-svelte and daisyUI in one project**—use either one.
   - Dashboard route: Main dashboard lives at `'/'`, **NOT** `'/dashboard'`.
   - Layout & Design: **Always Mobile-First** design; ask if need Sidebar vs Top AppBar/Drawer.
-- **Backend & DB**: FastAPI (layered routers/schemas/services) + MySQL (via Drizzle ORM) by default; Better Auth for authentication. Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).
+- **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary default stack; FastAPI (Python) for AI/data microservices. Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).
+- **Campus PDF & Documents**: Always use **`pdf-lib`** + `@pdf-lib/fontkit` for campus systems (10ms generation, no Chromium). Standardize with `renderCtuHeader` (CTU letterhead), alignment helpers (`renderText`, `renderCenteredText`, `renderRightText`), `renderTable`, watermarks, and verification QR codes.
 - **Embedded & IoT**: ESP32 with PlatformIO + Arduino Framework (C++). FreeRTOS multi-core (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` policy (always `vTaskDelay`). Include onboard AsyncWebServer for config dashboard (save to NVS/Preferences) and Web OTA (ElegantOTA).
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
 - **Verification**: Always run `pnpm check` (or build) / python typecheck before declaring any task complete.

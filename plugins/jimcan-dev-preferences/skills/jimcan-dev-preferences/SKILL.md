@@ -55,19 +55,12 @@ Always adhere to these personal preferences across all projects and tasks:
 
 ---
 
-## 4. Backend & Database Architecture
-- **Primary Database**: **MySQL** by default (via Drizzle ORM / PlanetScale driver or mysql2). Use PostgreSQL only if explicitly requested for that project.
-- **Backend Framework**: **FastAPI** with Python.
-  - **Layered Modular Layout**:
-    ```text
-    backend/
-    ├── core/          # config.py, security, database session
-    ├── routers/       # APIRouter modules for each endpoint group
-    ├── schemas/       # Pydantic v2 schemas for request/response validation
-    ├── services/      # Business logic & transactional operations
-    ├── models/        # Database tables & Drizzle/ORM schema definitions
-    └── main.py        # App entrypoint & middleware configuration
-    ```
+## 4. Fullstack & Backend Architecture
+- **Primary Fullstack Framework**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + Better Auth).
+  - Server routes & Form Actions (`+page.server.ts`) handle mutations and business logic.
+  - API Endpoints (`+server.ts`) for JSON APIs, webhooks, and PDF streams.
+- **Primary Database**: **MySQL** by default (via Drizzle ORM / mysql2). Use PostgreSQL only if explicitly requested.
+- **Secondary Backend (Microservices)**: **FastAPI** with Python for AI models, computer vision, or data science workloads.
 - **ORM & Migrations**:
   - Use **Drizzle ORM** with clean relational queries (`db.query`).
   - Prototyping: Use `drizzle-kit push` for fast local iterations.
@@ -75,12 +68,23 @@ Always adhere to these personal preferences across all projects and tasks:
 - **Database Seeding**:
   - Always provide a seed script (`db/seed.ts` for Node/TS or `scripts/seed.py` for Python) with realistic dummy/mock data for quick testing.
 - **Authentication**:
-  - Use **Better Auth** with the Drizzle MySQL adapter.
-  - Standard baseline: Email & Password + OAuth (Google/GitHub).
+  - Use **Better Auth** with the Drizzle MySQL adapter. Standard baseline: Email & Password + OAuth (Google/GitHub).
 
 ---
 
-## 5. Embedded Systems & IoT (ESP32)
+## 5. Campus Document & PDF Generation
+- **Engine**: Always use **`pdf-lib`** + **`@pdf-lib/fontkit`** for campus documents (COR, Grade Slip, DTR, Certificates).
+- **Core Standard**:
+  - Avoid heavy headless browsers (Puppeteer); `pdf-lib` renders in 10ms with <15MB RAM.
+  - Standardize official documents with **`renderCtuHeader`** (CTU letterhead with configurable department, website, and tel. no.).
+  - Use alignment helpers: `renderText` (left), `renderCenteredText` (center), `renderRightText` (right).
+  - Use `renderTable` for dynamic tabular grids (grades, enrolled courses, assessment fees).
+  - Watermarks: Render translucent official CTU seal (`0.08` opacity) clipped to the document canvas.
+  - Verification: Include dynamic QR codes (`qrcode` package) for authenticating document validity.
+
+---
+
+## 6. Embedded Systems & IoT (ESP32)
 - **Toolchain**: **PlatformIO** with the **Arduino Framework (C++)**.
 - **Architecture**: **FreeRTOS** dual-core task pinning.
   - Core 0: Wi-Fi, MQTT, AsyncWebServer, ElegantOTA.
@@ -93,19 +97,19 @@ Always adhere to these personal preferences across all projects and tasks:
 
 ---
 
-## 6. DevOps & Containerization
+## 7. DevOps & Containerization
 - **Docker**: Provide a production-ready `Dockerfile` and `docker-compose.yml` for reproducible local environments and easy deployment to VPS / self-hosted servers.
 
 ---
 
-## 7. Coding Style & Clean Code
+## 8. Coding Style & Clean Code
 - **Simplicity First**: Write the simplest, cleanest code that solves the problem. No bloated abstractions or premature generalizations.
 - **Early Returns**: Use guard clauses to exit early and avoid deep nesting.
 - **Surgical Edits**: Touch only the lines directly related to the user's task.
 
 ---
 
-## 8. Verification Protocol (Never Declare Done Blindly)
+## 9. Verification Protocol (Never Declare Done Blindly)
 Before reporting that any task or feature is complete:
 1. Run the project's type-checker / linter / test command:
    - For TS/Svelte: `pnpm check` (or build)

@@ -67,6 +67,17 @@ if [ -d "$SRC_ESP" ]; then
   echo "  -> Installed embedded-esp32-skills (plugin & global skill)"
 fi
 
+# Install campus-pdf-patterns
+SRC_PDF="$REPO_ROOT/plugins/campus-pdf-patterns"
+if [ -d "$SRC_PDF" ]; then
+  cp -R "$SRC_PDF" "$PLUGINS_DIR/"
+  SKILL_PDF_SRC="$SRC_PDF/skills/campus-pdf-patterns"
+  if [ -d "$SKILL_PDF_SRC" ]; then
+    cp -R "$SKILL_PDF_SRC" "$GLOBAL_SKILLS_DIR/"
+  fi
+  echo "  -> Installed campus-pdf-patterns (plugin & global skill)"
+fi
+
 # -----------------------------------------------------------------------------
 # 2. Download / Install Andrej Karpathy Skills
 # -----------------------------------------------------------------------------

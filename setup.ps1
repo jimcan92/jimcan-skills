@@ -90,6 +90,18 @@ if (Test-Path -Path $srcEsp) {
     Write-Host "  -> Installed embedded-esp32-skills (plugin & global skill)" -ForegroundColor DarkGreen
 }
 
+# Install campus-pdf-patterns
+$srcPdf = Join-Path -Path $repoRoot -ChildPath "plugins\campus-pdf-patterns"
+if (Test-Path -Path $srcPdf) {
+    Copy-Item -Path $srcPdf -Destination $pluginsDir -Recurse -Force
+    $pdfSkillSrc = Join-Path -Path $srcPdf -ChildPath "skills\campus-pdf-patterns"
+    if (Test-Path -Path $pdfSkillSrc) {
+        $pdfSkillDest = Join-Path -Path $globalSkillsDir -ChildPath "campus-pdf-patterns"
+        Copy-Item -Path $pdfSkillSrc -Destination $globalSkillsDir -Recurse -Force
+    }
+    Write-Host "  -> Installed campus-pdf-patterns (plugin & global skill)" -ForegroundColor DarkGreen
+}
+
 # -----------------------------------------------------------------------------
 # 2. Download / Install Andrej Karpathy Skills
 # -----------------------------------------------------------------------------

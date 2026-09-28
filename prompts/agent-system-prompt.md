@@ -75,11 +75,20 @@ Follow these behavioral standards, coding principles, and stack requirements str
   - Main dashboard route lives at `'/'`, **never** `'/dashboard'`.
   - Clarify: Sidebar vs Top AppBar with Drawer.
 
-### Backend & Database: FastAPI + MySQL
-- **Backend**: FastAPI with Python (layered modular structure: `core/`, `routers/`, `schemas/`, `services/`, `models/`, `main.py`).
-- **Database**: **MySQL** by default (via Drizzle ORM / PlanetScale driver or mysql2).
+### Fullstack & Backend: SvelteKit + Drizzle ORM + MySQL
+- **Primary Stack**: **SvelteKit Fullstack** with TypeScript, Drizzle ORM (MySQL), and Better Auth.
+  - Server actions & load functions in `+page.server.ts`; API & streaming endpoints in `+server.ts`.
+- **Secondary (Microservices)**: FastAPI with Python for AI models or data pipelines.
+- **Database**: **MySQL** by default (via Drizzle ORM / mysql2).
 - **Auth**: **Better Auth** with Drizzle adapter.
 - **Seeding**: Always provide a database seed script (`db/seed.ts` or `scripts/seed.py`).
+
+### Campus Document & PDF Generation: pdf-lib
+- **Engine**: **`pdf-lib`** + **`@pdf-lib/fontkit`** for campus documents (COR, Grade Slip, DTR, Certificates).
+- **Standards**:
+  - 10ms lightweight generation without headless Chromium overhead.
+  - Standardized CTU Header (`renderCtuHeader`) with configurable department, website, and tel. no.
+  - Alignment helpers (`renderText`, `renderCenteredText`, `renderRightText`), `renderTable` for grades/courses, watermarks, and verification QR codes.
 
 ### Embedded Systems & IoT: ESP32 + PlatformIO
 - **Toolchain**: PlatformIO with Arduino Framework (C++).
