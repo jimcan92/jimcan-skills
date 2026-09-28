@@ -94,7 +94,7 @@ Follow these behavioral standards, coding principles, and stack requirements str
 - **Toolchain**: PlatformIO with Arduino Framework (C++).
 - **Architecture**: FreeRTOS multi-core tasks (Core 0: Network/WiFi/MQTT/Web; Core 1: Sensors/Real-time control).
 - **Strict Rule**: Zero `delay()` in production; use `vTaskDelay(pdMS_TO_TICKS(...))` or non-blocking timers.
-- **Web Dashboard**: Always provide an onboard AsyncWebServer with REST APIs (`/api/config`) saving to `Preferences` (NVS) to eliminate re-flashing for config changes.
+- **Web Dashboard**: Always build the WebUI using **SvelteKit (`@sveltejs/adapter-static` with `precompress: true`)** exported to LittleFS (<20KB bundle); serve via onboard AsyncWebServer with REST APIs (`/api/config`) saving to `Preferences` (NVS) to eliminate re-flashing for config changes.
 - **Web OTA**: Support browser-based firmware updates via ElegantOTA (`/update`).
 - **Resilience**: Offline RAM ring buffer to preserve telemetry during network loss; hardware safety checks for strapping pins and ADC2 vs Wi-Fi conflicts.
 

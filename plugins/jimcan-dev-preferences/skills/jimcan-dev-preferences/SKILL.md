@@ -90,7 +90,7 @@ Always adhere to these personal preferences across all projects and tasks:
   - Core 0: Wi-Fi, MQTT, AsyncWebServer, ElegantOTA.
   - Core 1: High-priority sensor sampling, hardware control loops.
 - **Strict Zero-`delay()` Standard**: Never use blocking `delay()`; always use `vTaskDelay(pdMS_TO_TICKS(...))` or non-blocking timer loops.
-- **Configuration Dashboard**: Build an onboard **`ESPAsyncWebServer`** with REST endpoints (`/api/config`, `/api/status`, `/api/restart`) persisting settings to **`Preferences` (NVS)** or **`LittleFS`** to avoid re-flashing.
+- **WebUI & Configuration Dashboard**: Build the frontend with **SvelteKit (`@sveltejs/adapter-static` with `precompress: true`)** exporting directly into PlatformIO's `data/www` LittleFS partition (<20KB gzipped bundle). Serve via **`ESPAsyncWebServer`** with REST endpoints (`/api/config`, `/api/status`, `/api/restart`) persisting settings to **`Preferences` (NVS)** or **`LittleFS`**.
 - **Web Browser OTA**: Integrate **`ElegantOTA`** on `/update` for drag-and-drop browser firmware flashing.
 - **Network Resilience**: Implement non-blocking Wi-Fi reconnection + a circular **RAM ring buffer** so sensor telemetry is preserved during outages and flushed upon reconnect.
 - **Logging**: Use ESP-IDF tagged logging (`ESP_LOGI`, `ESP_LOGW`, `ESP_LOGE`).

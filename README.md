@@ -130,7 +130,7 @@ jimcan-skills/
   - Layout: Mobile-first responsive design; clarify Sidebar vs Drawer/TopBar.
 - **Fullstack & Backend**: **SvelteKit Fullstack** (TypeScript + Drizzle ORM + MySQL + Better Auth) as primary stack; FastAPI (Python) for AI microservices.
 - **Campus Document & PDF Generation**: Always use **`pdf-lib`** + `@pdf-lib/fontkit` for institutional systems (10ms generation, no Chromium). Standardized CTU letterhead (`renderCtuHeader`), alignment helpers (`renderText`, `renderCenteredText`, `renderRightText`), `renderTable`, watermarks, and verification QR codes.
-- **Embedded & IoT (ESP32)**: PlatformIO with Arduino Framework (C++). FreeRTOS multi-core tasks (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` standard. Onboard `ESPAsyncWebServer` for config dashboard (persisting to `Preferences` / `LittleFS`) and Web OTA (`ElegantOTA` on `/update`). RAM ring buffer for offline telemetry resilience.
+- **Embedded & IoT (ESP32)**: PlatformIO with Arduino Framework (C++). FreeRTOS multi-core tasks (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` standard. WebUI built with **SvelteKit (`@sveltejs/adapter-static`)** precompressed into LittleFS; onboard `ESPAsyncWebServer` for config dashboard (persisting to `Preferences` / `LittleFS`) and Web OTA (`ElegantOTA` on `/update`). RAM ring buffer for offline telemetry resilience.
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
 - **Verification**: Run `pnpm check` (or build) / Python typecheck before declaring tasks complete.
 
