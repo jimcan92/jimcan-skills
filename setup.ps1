@@ -78,6 +78,18 @@ if (Test-Path -Path $srcPref) {
     Write-Warning "Source directory $srcPref not found!"
 }
 
+# Install embedded-esp32-skills
+$srcEsp = Join-Path -Path $repoRoot -ChildPath "plugins\embedded-esp32-skills"
+if (Test-Path -Path $srcEsp) {
+    Copy-Item -Path $srcEsp -Destination $pluginsDir -Recurse -Force
+    $espSkillSrc = Join-Path -Path $srcEsp -ChildPath "skills\esp32-embedded-patterns"
+    if (Test-Path -Path $espSkillSrc) {
+        $espSkillDest = Join-Path -Path $globalSkillsDir -ChildPath "esp32-embedded-patterns"
+        Copy-Item -Path $espSkillSrc -Destination $globalSkillsDir -Recurse -Force
+    }
+    Write-Host "  -> Installed embedded-esp32-skills (plugin & global skill)" -ForegroundColor DarkGreen
+}
+
 # -----------------------------------------------------------------------------
 # 2. Download / Install Andrej Karpathy Skills
 # -----------------------------------------------------------------------------

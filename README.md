@@ -78,13 +78,18 @@ chmod +x setup.sh && ./setup.sh
 ```text
 jimcan-skills/
 ├── plugins/
-│   └── jimcan-dev-preferences/
-│       ├── plugin.json               # Plugin manifest
-│       ├── rules/
-│       │   └── AGENTS.md             # Mandatory rules & Grill-Me protocol
+│   ├── jimcan-dev-preferences/
+│   │   ├── plugin.json               # Plugin manifest
+│   │   ├── rules/
+│   │   │   └── AGENTS.md             # Mandatory rules & Grill-Me protocol
+│   │   └── skills/
+│   │       └── jimcan-dev-preferences/
+│   │           └── SKILL.md          # Personal dev standards & stack conventions
+│   └── embedded-esp32-skills/
+│       ├── plugin.json               # ESP32 plugin manifest
 │       └── skills/
-│           └── jimcan-dev-preferences/
-│               └── SKILL.md          # Personal dev standards & stack conventions
+│           └── esp32-embedded-patterns/
+│               └── SKILL.md          # Production FreeRTOS, PlatformIO, WebServer & OTA patterns
 ├── prompts/
 │   ├── bootstrap-prompt.md           # 1-copy onboarding prompt for fresh AI sessions (auto-cloning)
 │   └── agent-system-prompt.md        # Complete universal AI agent system prompt
@@ -120,6 +125,7 @@ jimcan-skills/
   - Layout: Mobile-first responsive design; clarify Sidebar vs Drawer/TopBar.
 - **Backend & Database**: FastAPI (modular routers/schemas/services) with MySQL (via Drizzle ORM).
 - **Authentication**: Better Auth with Drizzle adapter.
+- **Embedded & IoT (ESP32)**: PlatformIO with Arduino Framework (C++). FreeRTOS multi-core tasks (Core 0: Network/Web/OTA; Core 1: Sensors/Real-time). Strict NO `delay()` standard. Onboard `ESPAsyncWebServer` for config dashboard (persisting to `Preferences` / `LittleFS`) and Web OTA (`ElegantOTA` on `/update`). RAM ring buffer for offline telemetry resilience.
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
 - **Verification**: Run `pnpm check` (or build) / Python typecheck before declaring tasks complete.
 

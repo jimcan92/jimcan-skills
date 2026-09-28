@@ -1,0 +1,6 @@
+{
+  "name": "embedded-esp32-skills",
+  "displayName": "ESP32 Embedded & IoT Patterns",
+  "version": "1.0.0",
+  "description": "Production-grade ESP32 embedded patterns: PlatformIO, FreeRTOS multi-core, WebServer config dashboard, Web OTA (ElegantOTA), LittleFS, and hardware safety guardrails."
+}

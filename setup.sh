@@ -56,6 +56,17 @@ else
   echo "Warning: Source directory $SRC_PREF not found!"
 fi
 
+# Install embedded-esp32-skills
+SRC_ESP="$REPO_ROOT/plugins/embedded-esp32-skills"
+if [ -d "$SRC_ESP" ]; then
+  cp -R "$SRC_ESP" "$PLUGINS_DIR/"
+  SKILL_ESP_SRC="$SRC_ESP/skills/esp32-embedded-patterns"
+  if [ -d "$SKILL_ESP_SRC" ]; then
+    cp -R "$SKILL_ESP_SRC" "$GLOBAL_SKILLS_DIR/"
+  fi
+  echo "  -> Installed embedded-esp32-skills (plugin & global skill)"
+fi
+
 # -----------------------------------------------------------------------------
 # 2. Download / Install Andrej Karpathy Skills
 # -----------------------------------------------------------------------------

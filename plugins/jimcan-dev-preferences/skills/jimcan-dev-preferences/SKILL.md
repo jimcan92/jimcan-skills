@@ -80,19 +80,32 @@ Always adhere to these personal preferences across all projects and tasks:
 
 ---
 
-## 5. DevOps & Containerization
+## 5. Embedded Systems & IoT (ESP32)
+- **Toolchain**: **PlatformIO** with the **Arduino Framework (C++)**.
+- **Architecture**: **FreeRTOS** dual-core task pinning.
+  - Core 0: Wi-Fi, MQTT, AsyncWebServer, ElegantOTA.
+  - Core 1: High-priority sensor sampling, hardware control loops.
+- **Strict Zero-`delay()` Standard**: Never use blocking `delay()`; always use `vTaskDelay(pdMS_TO_TICKS(...))` or non-blocking timer loops.
+- **Configuration Dashboard**: Build an onboard **`ESPAsyncWebServer`** with REST endpoints (`/api/config`, `/api/status`, `/api/restart`) persisting settings to **`Preferences` (NVS)** or **`LittleFS`** to avoid re-flashing.
+- **Web Browser OTA**: Integrate **`ElegantOTA`** on `/update` for drag-and-drop browser firmware flashing.
+- **Network Resilience**: Implement non-blocking Wi-Fi reconnection + a circular **RAM ring buffer** so sensor telemetry is preserved during outages and flushed upon reconnect.
+- **Logging**: Use ESP-IDF tagged logging (`ESP_LOGI`, `ESP_LOGW`, `ESP_LOGE`).
+
+---
+
+## 6. DevOps & Containerization
 - **Docker**: Provide a production-ready `Dockerfile` and `docker-compose.yml` for reproducible local environments and easy deployment to VPS / self-hosted servers.
 
 ---
 
-## 6. Coding Style & Clean Code
+## 7. Coding Style & Clean Code
 - **Simplicity First**: Write the simplest, cleanest code that solves the problem. No bloated abstractions or premature generalizations.
 - **Early Returns**: Use guard clauses to exit early and avoid deep nesting.
 - **Surgical Edits**: Touch only the lines directly related to the user's task.
 
 ---
 
-## 7. Verification Protocol (Never Declare Done Blindly)
+## 8. Verification Protocol (Never Declare Done Blindly)
 Before reporting that any task or feature is complete:
 1. Run the project's type-checker / linter / test command:
    - For TS/Svelte: `pnpm check` (or build)
