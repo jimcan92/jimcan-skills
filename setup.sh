@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Automated Antigravity & Gemini Skills Setup for Jimcan's Environment (Linux/macOS)
+# Automated AI Agent Skills Setup for Jimcan's Environment (Linux/macOS)
+# Compatible with Claude Code, Cursor, Windsurf, Antigravity, and other agents.
 # =============================================================================
 
 set -e
 
 echo ""
 echo "========================================================"
-echo "   Jimcan's Antigravity Skills & Preferences Installer  "
+echo "   Jimcan's AI Agent Skills & Preferences Installer     "
 echo "========================================================"
 echo ""
 
@@ -169,5 +170,5 @@ echo "========================================================"
 echo "   Setup Completed Successfully!                        "
 echo "========================================================"
 echo "Installed in: $GEMINI_CONFIG_DIR"
-echo "Your Antigravity agent is now configured with Jimcan's preferences."
+echo "Your AI agents are now configured with Jimcan's preferences & skills."
 echo ""

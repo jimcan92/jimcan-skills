@@ -1,11 +1,12 @@
 <#
 .SYNOPSIS
-    Automated Antigravity & Gemini Skills Setup for Jimcan's Environment (Windows PowerShell)
+    Automated AI Agent Skills Setup for Jimcan's Environment (Windows PowerShell)
 
 .DESCRIPTION
     Installs Jimcan's personal preferences, rules, and prompts, and downloads
     curated community skills (Andrej Karpathy guidelines, Svelte 5/UI skills,
-    FastAPI/DB backend skills) into the user's global Gemini config directory.
+    FastAPI/DB backend skills) into the global AI agent skills configuration directory.
+    Compatible with Claude Code, Cursor, Windsurf, Antigravity, and other AI coding assistants.
 
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File .\setup.ps1
@@ -17,7 +18,7 @@ param()
 $ErrorActionPreference = 'Stop'
 
 Write-Host "`n========================================================" -ForegroundColor Cyan
-Write-Host "   Jimcan's Antigravity Skills & Preferences Installer   " -ForegroundColor Cyan
+Write-Host "   Jimcan's AI Agent Skills & Preferences Installer      " -ForegroundColor Cyan
 Write-Host "========================================================`n" -ForegroundColor Cyan
 
 # Define destination directories
@@ -194,4 +195,4 @@ Write-Host "`n========================================================" -Foregro
 Write-Host "   Setup Completed Successfully!                         " -ForegroundColor Cyan
 Write-Host "========================================================" -ForegroundColor Cyan
 Write-Host "Installed in: $geminiConfigDir" -ForegroundColor Yellow
-Write-Host "Your Antigravity agent is now configured with Jimcan's preferences.`n" -ForegroundColor Yellow
+Write-Host "Your AI agents are now configured with Jimcan's preferences & skills.`n" -ForegroundColor Yellow

@@ -5,10 +5,19 @@ Always follow these principles to avoid common LLM pitfalls, overcomplication, a
 ## MANDATORY: Plan & Clarify First (Never Jump Straight to Code)
 - When the user asks to create, implement, refactor, or fix anything non-trivial:
   - **DO NOT start editing files or writing code immediately on the first turn.**
-  - **Surface tradeoffs & ask questions first**: Present key ambiguities, design choices, or architectural decisions with your recommendations (using `ask_question` or structured question blocks).
+  - **Surface tradeoffs & ask questions first**: Present key ambiguities, design choices, or architectural decisions with your recommendations (using structured questions or interactive blocks).
     - For dashboard/admin apps: Always clarify if the user wants a **Sidebar** or just a **Top AppBar / Drawer**.
   - **Present a step-by-step plan**: Break down the implementation into verifiable steps: `[Step] -> verify: [check]`.
-  - **Wait for confirmation**: Wait for the user to answer questions or confirm the plan before modifying or creating code files.
+  - **Wait for confirmation**: Wait for Jimcan to answer questions or confirm the plan before modifying or creating code files.
+
+## The "Grill-Me" Protocol (Active Interview Phase)
+- Whenever Jimcan starts a new project, feature, or if requirements are open-ended:
+  - **Relentlessly grill Jimcan before coding**: Do not let ambiguity slide. Ask pointed questions covering:
+    1. **Architecture & Scope**: What are the core entities? Are there external integrations?
+    2. **UI & Layout**: Mobile-first requirements. For dashboards/admin screens: Collapsible **Sidebar** or just a **Top AppBar / Drawer**?
+    3. **Design System**: Explicit choice between `daisyUI` or `shadcn-svelte` (never mix both!).
+    4. **Data & Edge Cases**: Validation rules, error states, and empty states.
+  - Always provide your recommended choice first, explain the tradeoffs briefly, and wait for Jimcan's answers.
 
 ## 1. Think Before Coding
 - **Don't assume. Don't hide confusion. Surface tradeoffs.**

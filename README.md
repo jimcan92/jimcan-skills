@@ -1,16 +1,49 @@
 # jimcan-skills
 
-> **Jimcan's (Jimboy Cantila) Antigravity Agent Preferences & Automated Skills Toolkit**
+> **Jimcan's (Jimboy Cantila) Universal AI Agent Preferences, Skills & Grill-Me Toolkit**  
+> *Compatible with any AI coding agent: Claude Code, Cursor, Windsurf, Antigravity, Codex, etc.*
 
-This repository contains my personal development standards, behavioral agent rules, and an automated setup system to bootstrap any Google Antigravity / Gemini agent across any workstation in seconds.
+This repository contains my personal development standards, behavioral agent rules, and an automated setup system to bootstrap **any AI coding agent** on any device or workspace in seconds.
 
-To keep the repository lightweight, only personal preferences, system prompts, and installer scripts are version-controlled. All external and community-curated skills are dynamically fetched and installed upon setup.
+To keep the repository clean and lightweight, only personal preferences, system prompts, and installer scripts are version-controlled. All external and community-curated skills are dynamically fetched and installed upon setup.
 
 ---
 
-## ⚡ Quickstart (1-Command Setup)
+## 🚀 The AI Agent Bootstrap Prompt
 
-Whenever setting up on a new device or laptop:
+Whenever opening a project on a new computer or starting a fresh AI assistant session, simply copy-paste this prompt to your AI agent:
+
+```markdown
+You are my expert AI pair programmer. Before doing any development work, complete the following onboarding sequence:
+
+1. Install Skills & Preferences:
+   - On Windows: Run `powershell -ExecutionPolicy Bypass -File .\setup.ps1`
+   - On Mac/Linux: Run `chmod +x setup.sh && ./setup.sh`
+   - Verify that `jimcan-dev-preferences` and all downloaded skills are properly installed.
+
+2. Adopt Guidelines:
+   - Read and strictly adhere to `prompts/agent-system-prompt.md` and `plugins/jimcan-dev-preferences/rules/AGENTS.md`.
+   - Address me as Jimcan (Jimboy Cantila).
+   - Chat in Bisaya / Taglish; code, comments, documentation, and Git commits in 100% English.
+   - My stack: Svelte 5 runes (daisyUI or shadcn-svelte exclusively), FastAPI + MySQL (Drizzle ORM), Better Auth, pnpm, uv.
+
+3. Grill Me (Mandatory Before Coding):
+   - Inspect my current workspace/project.
+   - If starting a new feature, project, or if requirements/architecture are underspecified:
+     - DO NOT start coding immediately.
+     - Grill me thoroughly: Ask probing questions about tradeoffs, architecture, entities, and UI layout (Sidebar vs Top AppBar/Drawer).
+     - Surface your recommendations first, present a verifiable step-by-step plan (`[Step] -> verify: [check]`), and wait for my confirmation before creating or editing files.
+
+Confirm when setup is finished and ask your first set of questions to grill me.
+```
+
+*(You can also find this prompt in [`prompts/bootstrap-prompt.md`](prompts/bootstrap-prompt.md))*
+
+---
+
+## ⚡ Quickstart (Manual 1-Command Setup)
+
+If you prefer to run the setup command yourself:
 
 ### Windows (PowerShell)
 ```powershell
@@ -26,12 +59,12 @@ cd jimcan-skills
 chmod +x setup.sh && ./setup.sh
 ```
 
-The installer will:
-1. Copy `jimcan-dev-preferences` (standards and rules) into `~/.gemini/config/plugins/`.
-2. Clone and link `andrej-karpathy-skills` directly from upstream.
-3. Fetch the latest `ui-design-skills` (Svelte 5 runes, daisyUI, shadcn-svelte).
-4. Fetch the latest `backend-db-skills` (FastAPI, Drizzle ORM, MySQL, Better Auth).
-5. Register all skills globally in `~/.gemini/config/skills/` for instant agent recognition.
+**What the setup script does:**
+1. Installs `jimcan-dev-preferences` (standards and rules) into the global configuration directory.
+2. Clones and links `andrej-karpathy-skills` from upstream.
+3. Downloads the latest **UI Design skills** (`svelte5-best-practices`, `shadcn-svelte`, `daisyui`, `svelte-core-bestpractices`, `svelte-code-writer`).
+4. Downloads the latest **Backend & Database skills** (`fastapi-patterns`, `drizzle-best-practices`, `better-auth-best-practices`, `mysql-patterns`, `planetscale-mysql`, `postgres-patterns`, `supabase-postgres-best-practices`).
+5. Registers all skills and rules globally so any agent tool instantly recognizes them.
 
 ---
 
@@ -41,18 +74,19 @@ The installer will:
 jimcan-skills/
 ├── plugins/
 │   └── jimcan-dev-preferences/
-│       ├── plugin.json                    # Plugin manifest
+│       ├── plugin.json               # Plugin manifest
 │       ├── rules/
-│       │   └── AGENTS.md                  # Mandatory agent behavioral rules & stack standards
+│       │   └── AGENTS.md             # Mandatory rules & Grill-Me protocol
 │       └── skills/
 │           └── jimcan-dev-preferences/
-│               └── SKILL.md               # Detailed stack preferences & conventions
+│               └── SKILL.md          # Personal dev standards & stack conventions
 ├── prompts/
-│   └── agent-system-prompt.md             # Universal agent system prompt (Cursor, Claude, etc.)
-├── setup.ps1                              # Windows PowerShell automated installer
-├── setup.sh                               # Linux / macOS Bash automated installer
-├── .gitignore                             # OS and temporary file ignores
-└── README.md                              # Documentation
+│   ├── bootstrap-prompt.md           # 1-copy onboarding prompt for fresh AI sessions
+│   └── agent-system-prompt.md        # Complete universal AI agent system prompt
+├── setup.ps1                         # Windows PowerShell automated installer
+├── setup.sh                          # Linux / macOS Bash automated installer
+├── .gitignore                        # Git ignores
+└── README.md                         # Documentation & Quickstart
 ```
 
 ---
@@ -61,7 +95,8 @@ jimcan-skills/
 
 ### 1. Mandatory Behavioral Guidelines (Karpathy + Planning First)
 - **Plan & Clarify First**: Never jump straight to code on non-trivial tasks. Surface trade-offs, ask questions, present a step-by-step verifiable plan, and wait for confirmation.
-- **Think Before Coding**: State assumptions explicitly; don't hide ambiguity.
+- **The Grill-Me Protocol**: If requirements or architecture have ambiguities, the agent must aggressively interview Jimcan with targeted questions and recommendations before proposing a plan.
+- **Think Before Coding**: State assumptions explicitly; don't hide confusion.
 - **Simplicity First**: Write the minimum code needed to solve the problem. Nothing speculative.
 - **Surgical Changes**: Only modify what is strictly required; clean up after yourself.
 - **Goal-Driven Execution**: Define verifiable steps `[Step] -> verify: [check]`.
@@ -74,10 +109,10 @@ jimcan-skills/
   - Shared functions/helpers in `$lib/utils/`.
   - Forms: Native HTML5 forms + Svelte 5 runes (`$state` validation).
   - Icons: `lucide-svelte`.
-  - Dark Mode: Supported via theme toggle.
+  - Dark Mode: Supported via theme toggle (`mode-watcher` or `data-theme`).
   - Strict UI Separation: **Never mix `shadcn-svelte` and `daisyUI` in the same project**—choose one.
   - Dashboard route: Main dashboard mapped to `'/'`, never `'/dashboard'`.
-  - Layout: Mobile-first responsive design.
+  - Layout: Mobile-first responsive design; clarify Sidebar vs Drawer/TopBar.
 - **Backend & Database**: FastAPI (modular routers/schemas/services) with MySQL (via Drizzle ORM).
 - **Authentication**: Better Auth with Drizzle adapter.
 - **DevOps**: Dockerfile + `docker-compose.yml` for local reproducibility and deployments.
@@ -85,17 +120,7 @@ jimcan-skills/
 
 ---
 
-## 🤖 Standalone Agent System Prompt
-
-If using other AI assistants (such as Cursor, Windsurf, Claude Projects, or ChatGPT) that cannot directly mount Antigravity plugins, copy and paste the contents of:
-
-👉 [`prompts/agent-system-prompt.md`](prompts/agent-system-prompt.md)
-
-This gives any AI tool the exact same context, behavioral constraints, and stack preferences.
-
----
-
 ## 🔄 Updating or Adding Skills
 
-- To modify your personal preferences, edit [`plugins/jimcan-dev-preferences/skills/jimcan-dev-preferences/SKILL.md`](plugins/jimcan-dev-preferences/skills/jimcan-dev-preferences/SKILL.md) and commit the changes.
-- To re-sync changes to your local machine, simply rerun `.\setup.ps1` or `./setup.sh`.
+- To modify personal preferences, edit [`plugins/jimcan-dev-preferences/skills/jimcan-dev-preferences/SKILL.md`](plugins/jimcan-dev-preferences/skills/jimcan-dev-preferences/SKILL.md) and commit.
+- To re-sync to your local machine, run `.\setup.ps1` or `./setup.sh`.
